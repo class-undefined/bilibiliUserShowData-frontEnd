@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <top-back-div :user-info="userInfo"></top-back-div>
+    <instrument-panel :user-info="userInfo" :navNumInfo="navNumInfo"></instrument-panel>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
+import TopBackDiv from "@/components/TopBackDiv/TopBackDiv";
+import InstrumentPanel from "@/components/InstrumentPanel";
 export default {
   name: 'Home',
+  props:{
+    userInfo:{
+      type:Object,
+      required:true
+    },
+    navNumInfo:{
+      type:Object,
+      required:true
+    },
+
+  },
   components: {
-    HelloWorld
+    InstrumentPanel,
+    TopBackDiv
   }
 }
 </script>
