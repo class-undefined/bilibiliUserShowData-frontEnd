@@ -1,5 +1,10 @@
-# bilibiliusershowdata
-
+# bilibiliUserShowData
+#### B站用户数据可视化报表-前端
+### 框架·库·工具
+ - Vue2.0
+ - Element-UI
+ - vue-echarts 
+ - @vue/cli
 ## Project setup
 ```
 npm install
