@@ -63,10 +63,10 @@ export default {
         }
       };
       myChart.setOption({
-        backgroundColor: {
-          image: bgPatternImg,
-          repeat: 'repeat'
-        },
+        // backgroundColor: {
+        //   image: bgPatternImg,
+        //   repeat: 'repeat'
+        // },
         title: {
           // text: '饼图纹理',
           textStyle: {

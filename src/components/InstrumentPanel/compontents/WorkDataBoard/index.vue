@@ -1,5 +1,5 @@
 <template>
-  <el-tabs v-model="activeName" @tab-click="handleClick" >
+  <el-tabs v-model="activeName" @tab-click="handleClick" tab-position="right" >
     <el-tab-pane v-for="item in noteData"
                  :label="'近' + item.days.toString() + '天'"
                  :key="item.days"
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import EchartsOneNumber from '@/components/InstrumentPanel/FansGlobalRank/WorkDataBoard/EchartsOneNumber'
+import EchartsOneNumber from '@/components/InstrumentPanel/compontents/WorkDataBoard/EchartsOneNumber'
 export default {
   name: "WorkDataBoard",
   components:{
@@ -77,6 +77,6 @@ export default {
 }
 .one-number-item{
   width: 25%;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 </style>

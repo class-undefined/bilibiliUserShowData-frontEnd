@@ -1,47 +1,34 @@
 <template>
-  <div class="fans-global-rank-flex-container">
-    <h2 class="title-card" style="" v-show="showH2">{{title}}</h2>
+  <div class="line-card-item">
+    <h2 class="title-card">{{title}}</h2>
     <slot name="echarts"></slot>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: "fansGlobalRank",
-  components: {},
-  props:{
+  name: "EchartsCard",
+  props: {
+    // userInfo: {
+    //   type: Object,
+    //   required: true
+    // },
     title:{
       type:String,
       required: false
-    },
-    showH2:{
-      type:Boolean,
-      default:true,
-      required: false
     }
-  },
-  data(){
-    return{
-
-    }
-  },
-  mounted() {
-    // console.log(this.rankInfo);
   }
 }
 </script>
 
 <style scoped>
-.fans-global-rank-flex-container{
-  display: flex;
-  flex-direction: column;
-  width: 340px;
-  height: 240px;
-}
-.title-card{
-  padding: 0 15px;
+.line-card-item {
   flex: 1;
+  /*width: 50%;*/
+}
+
+.title-card {
+  padding: 0 15px;
   border-bottom: 1px solid #e6e6e6;
   align-content: center;
   text-align: left;

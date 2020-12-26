@@ -43,7 +43,7 @@ export default {
       let myChart = this.echarts.init(this.$refs['work-type'])
       // 绘制图表
       myChart.setOption({
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(255, 255, 255, 0)',
         yAxis: {
           type: 'category',
           axisLine: {
@@ -53,9 +53,11 @@ export default {
             show: false //小横线
           },
           axisLabel: {
-            color: '#999' //坐标轴字颜色
+            color: '#090909', //坐标轴字颜色
+            fontWeight:'300',
+            fontSize:14
           },
-          data: self.Axis.xData
+          data: self.Axis.xData,
         },
 
         xAxis: {

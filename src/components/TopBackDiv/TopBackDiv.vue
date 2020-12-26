@@ -43,6 +43,8 @@ export default {
   display: flex;
   max-height: 276px;
   background-color: rgba(41,46,56,0.8);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
   color: white;
 }
 .number-item{
