@@ -5,7 +5,7 @@ import store from './store'
 import './plugins/element.js'
 import * as echarts from 'echarts'
 Vue.prototype.echarts = echarts
-
+Vue.prototype.vueCompontent = {}//储存vue实例的容器
 Vue.config.productionTip = false
 new Vue({
   router,

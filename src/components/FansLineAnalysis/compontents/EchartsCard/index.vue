@@ -24,11 +24,12 @@ export default {
 <style scoped>
 .line-card-item {
   flex: 1;
+  padding: 10px 25px;
   /*width: 50%;*/
 }
 
 .title-card {
-  padding: 0 15px;
+  padding: 0px 0px 15px 0px;
   border-bottom: 1px solid #e6e6e6;
   align-content: center;
   text-align: left;
