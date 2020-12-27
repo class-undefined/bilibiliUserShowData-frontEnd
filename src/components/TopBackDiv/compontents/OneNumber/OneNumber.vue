@@ -1,7 +1,7 @@
 <template>
-  <el-row :gutter="2" style="border-left: 1px solid #5e7b95; padding: 10px 30px">
-    <p class="number">{{ val }}万</p>
-    <p class="label">{{ label }}</p>
+  <el-row :gutter="2" style="border-left: 1px solid #666666; padding: 10px 30px">
+    <p class="number" :style="{color}">{{ val }}万</p>
+    <p class="label" :style="{color}">{{ label }}</p>
   </el-row>
 
 </template>
@@ -17,6 +17,10 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    color:{
+      type:String,
+      required:false
     }
   },
   computed:{

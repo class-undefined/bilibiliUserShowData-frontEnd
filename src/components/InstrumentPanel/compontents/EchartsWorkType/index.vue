@@ -73,7 +73,7 @@ export default {
         //                 // 越往后的数据时长越大
         //                 return idx * 9000;
         //             },
-        animationDuration: 5000,
+        animationDuration: 2000,
         series: [{
           /* data: [120, 200, 150, 80, 70, 110, 130], */
           type: 'bar',

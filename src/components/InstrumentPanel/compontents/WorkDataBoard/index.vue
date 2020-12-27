@@ -5,10 +5,11 @@
                  :key="item.days"
                  :name="item.days.toString() ">
       <div class="work-data-board-container">
-        <echarts-one-number v-for="(val,key) in item"
+        <echarts-one-number v-for="(val,key,index) in item"
                             class="one-number-item"
                             :title="obj_key[key]"
                             :key="key"
+                            :color="colors[index]"
                             :value="parseFloat(val)" >
         </echarts-one-number>
       </div>
@@ -43,7 +44,9 @@ export default {
         "maxfavoritecount":"最高收藏",
         "maxreplycount":"最高评论",
         "days":"days"
-      }
+      },
+      //传入9个是因为有一个days也进入了循环 但是没有被显示
+      colors:['#FF9999','#66CCFF','#66CC99','#99CCCC','#FF6666','#66CCCC','#666699','#6699CC','#6699CC']
     };
   },
   computed:{

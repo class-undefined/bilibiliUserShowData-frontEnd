@@ -120,7 +120,7 @@ export default {
     selectFansData(compontent) {
       let self = this
       let option = {}
-      let config = {text: "粉丝增量", color: "#DB7093"}
+      let config = {text: "粉丝增量", color: "#FF6666"}
       config.text = this.model1 + this.model2
       option = getOption({"xData": self.fansDaysInfo.xData, "yData": self.fansDaysInfo.yData},
           config)
@@ -145,7 +145,7 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  min-height: 300px;
+  /*min-height: 300px;*/
   margin-top: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border-radius: 2px;

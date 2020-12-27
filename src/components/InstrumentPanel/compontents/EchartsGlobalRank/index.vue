@@ -42,7 +42,13 @@ export default {
       let myChart = this.echarts.init(this.$refs['global-rank'])
       // 绘制图表
       myChart.setOption({
-        title: {text: '第' + self.rank +'名（超过 '+ self.followerpercent +'% 达人）'},
+        title: {
+          text: '第' + self.rank +'名（超过 '+ self.followerpercent +'% 达人）',
+          textStyle:{
+            fontWeight:300,
+            fontSize:15
+          }
+        },
         tooltip: {
           trigger: 'axis'
         },
