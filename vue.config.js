@@ -26,6 +26,7 @@ module.exports = {
       }
 
     }
-  }
+  },
+  productionSourceMap:false
 
 }

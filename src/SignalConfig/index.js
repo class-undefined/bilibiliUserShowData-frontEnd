@@ -1,4 +1,4 @@
 const signal = {
-    UPDATA:"upDate"
+    UPDATA:"upDate",
 }
 export default signal

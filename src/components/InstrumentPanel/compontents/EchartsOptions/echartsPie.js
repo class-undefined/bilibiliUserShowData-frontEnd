@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const getOption = function (optionData, config) {
     /*
     * @param optionData:[{name,value},{name,value}]

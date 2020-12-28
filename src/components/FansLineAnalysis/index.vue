@@ -53,6 +53,8 @@
 import EchartsCard from "@/components/FansLineAnalysis/compontents/EchartsCard";
 import EchartsLine from "@/components/FansLineAnalysis/compontents/EchartsLine";
 import getOption from "@/components/FansLineAnalysis/compontents/EchartsLine/EchartsOptions/echartsLine";
+import signal from "@/SignalConfig";
+import {status} from "@/api/config/status";
 
 export default {
   name: "FansLineAnalysis",
@@ -124,6 +126,16 @@ export default {
   mounted() {
     this.selectFansData(this.v_ref[0])
     this.selectFansData(this.v_ref[1])
+    this.globalEmit.$on(signal.UPDATA,data=>{
+      // let navNumInfo = data.navNumInfo
+      let userInfo = data.userInfo
+      console.log(data);
+      // let typeInfo = data.typeInfo
+      // console.log(data,2);//TODO
+      // self.upDataEchartsPie(navNumInfo)
+      this.userInfo = userInfo
+      // self.upDataEchartsWorkType(typeInfo)
+    })
   },
   methods: {
     selectFansData(compontent) {

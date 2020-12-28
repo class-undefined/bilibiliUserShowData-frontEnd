@@ -13,8 +13,6 @@ export default {
   },
   data() {
     return {
-      xData:[],
-      yData:[],
       echartsTarget:undefined
     }
   },

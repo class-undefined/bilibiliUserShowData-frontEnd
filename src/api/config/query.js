@@ -1,5 +1,7 @@
 let query = {
     userInfo:'query/userinfo',
-    numInfo:'query/numInfo'
+    numInfo:'query/numInfo',
+    typeInfo:'query/typeInfo'
 }
-export default query
+let queryNum = 3
+export {query,queryNum}

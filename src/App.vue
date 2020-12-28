@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <el-header>
-        <header-div @updateInfo="upDataInfo"/>
+        <header-div />
       </el-header>
       <el-main>
         <home v-loading="loading" :userInfo="userInfo" :navNumInfo="navNumInfo"></home>
@@ -15,9 +15,9 @@
 
 import Home from "@/views/Home";
 import request from "@/api/request/request";
-import query from "@/api/config/query";
+import  {query,queryNum} from "@/api/config/query";
 import HeaderDiv from "@/components/HeaderDiv";
-
+import signal from "@/SignalConfig";
 export default {
   name: 'app',
   components: {
@@ -28,6 +28,7 @@ export default {
     return {
       userInfo: require("@/assets/userInfo.json"),//获取信息入口，暂时使用本地json数据，之后将使用axios与后端进行联调
       navNumInfo: require("@/assets/navNumInfo.json"),
+      typeInfo:{},
       loading: true,
       requestCount: 0,
     }
@@ -35,6 +36,8 @@ export default {
   mounted() {
     this.getNumInfo()
     this.getUserInfo()
+    this.getTypeInfo()
+    this.globalEmit.$on(signal.UPDATA,this.upDataInfo)
   },
   methods: {
     getNumInfo() {
@@ -43,7 +46,8 @@ export default {
             // console.log(res);
             this.navNumInfo = res.data
             this.requestCount++
-            if (this.requestCount === 2) {
+            if (this.requestCount === queryNum) {
+              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
               this.loading = false
               this.requestCount = 0
             }
@@ -54,7 +58,20 @@ export default {
           .then(res => {
             this.userInfo = res.data
             this.requestCount++
-            if (this.requestCount === 2) {
+            if (this.requestCount === queryNum) {
+              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
+              this.loading = false
+              this.requestCount = 0
+            }
+          })
+    },
+    getTypeInfo(){
+      request.post(query.typeInfo, {"mid": 3766866})
+          .then(res => {
+            this.typeInfo = res.data.tlist
+            this.requestCount++
+            if (this.requestCount === queryNum) {
+              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
               this.loading = false
               this.requestCount = 0
             }
@@ -64,8 +81,10 @@ export default {
       // let self = this
       let userInfo = data.userInfo
       let numInfo = data.numInfo
+      let typeInfo = data.typeInfo
       this.userInfo = userInfo
       this.navNumInfo = numInfo
+      this.typeInfo = typeInfo
     }
   }
 }
