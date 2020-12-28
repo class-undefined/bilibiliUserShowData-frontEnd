@@ -134,6 +134,10 @@ export default {
       // console.log(data,2);//TODO
       // self.upDataEchartsPie(navNumInfo)
       this.userInfo = userInfo
+      this.selectFansData(this.v_ref[0])
+      this.selectFansData(this.v_ref[1])
+      this.selectVideoData(this.v_ref[0])
+      this.selectVideoData(this.v_ref[1])
       // self.upDataEchartsWorkType(typeInfo)
     })
   },
