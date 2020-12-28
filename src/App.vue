@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header >
+      <el-header>
         <header-div @updateInfo="upDataInfo"/>
       </el-header>
       <el-main>
@@ -17,6 +17,7 @@ import Home from "@/views/Home";
 import request from "@/api/request/request";
 import query from "@/api/config/query";
 import HeaderDiv from "@/components/HeaderDiv";
+
 export default {
   name: 'app',
   components: {
@@ -25,55 +26,57 @@ export default {
   },
   data() {
     return {
-      userInfo:require("@/assets/userInfo.json"),//获取信息入口，暂时使用本地json数据，之后将使用axios与后端进行联调
-      navNumInfo:require("@/assets/navNumInfo.json"),
-      loading:true,
-      requestCount:0
+      userInfo: require("@/assets/userInfo.json"),//获取信息入口，暂时使用本地json数据，之后将使用axios与后端进行联调
+      navNumInfo: require("@/assets/navNumInfo.json"),
+      loading: true,
+      requestCount: 0,
     }
   },
   mounted() {
     this.getNumInfo()
     this.getUserInfo()
   },
-  methods:{
-    getNumInfo(){
-      request.post(query.numInfo,{"mid":3766866})
-      .then(res=>{
-        // console.log(res);
-        this.navNumInfo = res.data
-        this.requestCount++
-        if(this.requestCount==2){
-          this.loading = false
-        }
-      })
-    },
-    getUserInfo(){
-      request.post(query.userInfo,{"mid":3766866})
-          .then(res=>{
-            this.userInfo = res.data
+  methods: {
+    getNumInfo() {
+      request.post(query.numInfo, {"mid": 3766866})
+          .then(res => {
+            // console.log(res);
+            this.navNumInfo = res.data
             this.requestCount++
-            if(this.requestCount==2){
+            if (this.requestCount === 2) {
               this.loading = false
+              this.requestCount = 0
             }
           })
     },
-    upDataInfo(data){
+    getUserInfo() {
+      request.post(query.userInfo, {"mid": 3766866})
+          .then(res => {
+            this.userInfo = res.data
+            this.requestCount++
+            if (this.requestCount === 2) {
+              this.loading = false
+              this.requestCount = 0
+            }
+          })
+    },
+    upDataInfo(data) {
       // let self = this
       let userInfo = data.userInfo
       let numInfo = data.numInfo
       this.userInfo = userInfo
       this.navNumInfo = numInfo
-
     }
   }
 }
 </script>
 
 <style>
-*{
+* {
   /*margin: 0;*/
   font-weight: 300;
 }
+
 .el-header, .el-footer {
   /*background-color: #B3C0D1;*/
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -115,3 +118,11 @@ body > .el-container {
   line-height: 320px;
 }
 </style>
+<!--TODO：数据传递方法优化-->
+<!--
+发现一个刷新数据的问题：目前采用的是使用props传递数据，但发现由于组件生存周期的问题，传递数据、获取数据有冲突，
+加上组件刷新数据没有采取统一刷新数据的方式，结构混乱，需要进行统一处理
+方法1：父组件传递数据至子组件方法
+方法2：采用全局事件
+多个组件公用同一套数据集，父组件传递数据至子组件来获取数据太繁琐，因此还是决定采用全局事件。
+-->

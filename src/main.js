@@ -6,6 +6,7 @@ import './plugins/element.js'
 import * as echarts from 'echarts'
 Vue.prototype.echarts = echarts
 Vue.prototype.vueCompontent = {}//储存vue实例的容器
+Vue.prototype.globalEmit = new Vue() //注册全局事件挂在至vue中
 Vue.config.productionTip = false
 new Vue({
   router,

@@ -14,12 +14,19 @@ export default {
       yData:[],
     }
   },
+  watch:{
+    option(){
+      this.drawLine()
+    }
+  },
   mounted() {
     this.drawLine();
   },
   computed:{
     Axis(){
       let self = this
+      self.xData = []
+      self.yData = []
       for(let i = 0; i<this.option.rank_info.length;i++){
         let rankInfoItem = self.option.rank_info[i]
         self.xData.push(rankInfoItem.ddate)

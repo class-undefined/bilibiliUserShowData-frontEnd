@@ -63,6 +63,15 @@ export default {
       required: true
     }
   },
+  watch:{
+    /*监控prop中的userInfo是否发生改变，若发生改变则重新加载数据*/
+    userInfo(){
+      this.selectFansData(this.v_ref[0])
+      this.selectFansData(this.v_ref[1])
+      this.selectVideoData(this.v_ref[0])
+      this.selectVideoData(this.v_ref[1])
+    }
+  },
   data() {
     return {
       v_ref: ['echarts-fans-line', 'echarts-video-line'],
@@ -114,7 +123,7 @@ export default {
   },
   mounted() {
     this.selectFansData(this.v_ref[0])
-    this.selectVideoData(this.v_ref[1])
+    this.selectFansData(this.v_ref[1])
   },
   methods: {
     selectFansData(compontent) {

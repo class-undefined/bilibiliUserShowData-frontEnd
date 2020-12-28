@@ -31,6 +31,7 @@
 <script>
 import request from "@/api/request/request";
 import query from "@/api/config/query";
+import signal from "@/SignalConfig";
 
 export default {
   name: "HeaderDiv",
@@ -58,6 +59,7 @@ export default {
             self.requestCount++
             if(self.requestCount==2){
               self.$emit("updateInfo",{"navNumInfo":self.navNumInfo,"userInfo":self.userInfo})
+              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo})
               self.requestCount = 0
             }
           })
@@ -71,6 +73,7 @@ export default {
             if(self.requestCount==2){
               self.loading = false
               self.$emit("updateInfo",{"navNumInfo":self.navNumInfo,"userInfo":self.userInfo})
+              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo})
               self.requestCount = 0
             }
           })
