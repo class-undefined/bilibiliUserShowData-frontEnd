@@ -34,6 +34,7 @@ import request from "@/api/request/request";
 import {query, queryNum} from "@/api/config/query";
 import {signal,LOAD} from "@/SignalConfig";
 import {status} from "@/api/config/status";
+import {loadSignal_SEARCH} from "@/SignalConfig/api";
 
 export default {
   name: "HeaderDiv",
@@ -53,6 +54,7 @@ export default {
     this.getAllInfo("517327498")
   },
   methods: {
+    /*提交表单*/
     onSubmit() {
       if(this.form.mid===""){
         return
@@ -77,12 +79,12 @@ export default {
                 position: "bottom-left"
               })
               self.requestCount = 0
+              loadSignal_SEARCH(self,LOAD.SEARCHED_FAIL,LOAD.STATE_FAIL)
               return
             }
             self.navNumInfo = res.data
             self.requestCount++
             if (self.requestCount === queryNum) {
-              // self.$emit("updateInfo",{"navNumInfo":self.navNumInfo,"userInfo":self.userInfo,"typeInfo":self.typeInfo})
               this.globalEmit.$emit(signal.UPDATE, {
                 navNumInfo: self.navNumInfo,
                 userInfo: self.userInfo,
@@ -90,11 +92,7 @@ export default {
               })
               self.requestCount = 0
               //成功获取信息后，发送搜索完成结果
-              let load = {
-                text:LOAD.SEARCHED,
-                state:LOAD.STATE_SUC
-              }
-              this.globalEmit.$emit(signal.SEARCH,load)
+              loadSignal_SEARCH(self,LOAD.SEARCHED,LOAD.STATE_SUC)
             }
           })
     },
@@ -109,6 +107,7 @@ export default {
                 message: res.data,
                 position: "bottom-left"
               })
+              loadSignal_SEARCH(self,LOAD.SEARCHED_FAIL,LOAD.STATE_FAIL)
               self.requestCount = 0
               return
             } else if (res.data.baseinfo.length === 0) {
@@ -118,6 +117,7 @@ export default {
                 position: "bottom-left"
               })
               this.requestCount = 0
+              loadSignal_SEARCH(self,LOAD.SEARCHED_FAIL,LOAD.STATE_FAIL)
               return
             }
             self.userInfo = res.data
@@ -132,11 +132,7 @@ export default {
               })
               self.requestCount = 0
               //成功获取信息后，发送搜索完成结果
-              let load = {
-                text:LOAD.SEARCHED,
-                state:LOAD.STATE_SUC
-              }
-              this.globalEmit.$emit(signal.SEARCH,load)
+              loadSignal_SEARCH(self,LOAD.SEARCHED,LOAD.STATE_SUC)
             }
           })
     },
@@ -152,6 +148,7 @@ export default {
                 position: "bottom-left"
               })
               self.requestCount = 0
+              loadSignal_SEARCH(self,LOAD.SEARCHED_FAIL,LOAD.STATE_FAIL)
               return
             } else if (res.data.tlist === null) {
               this.$notify.error({
@@ -160,6 +157,7 @@ export default {
                 position: "bottom-left"
               })
               this.requestCount = 0
+              loadSignal_SEARCH(self,LOAD.SEARCHED_FAIL,LOAD.STATE_FAIL)
               return
             }
             // console.log(res);
@@ -174,11 +172,7 @@ export default {
               })
               self.requestCount = 0
               //成功获取信息后，发送搜索完成结果
-              let load = {
-                text:LOAD.SEARCHED,
-                state:LOAD.STATE_SUC
-              }
-              this.globalEmit.$emit(signal.SEARCH,load)
+              loadSignal_SEARCH(self,LOAD.SEARCHED,LOAD.STATE_SUC)
             }
           })
 
