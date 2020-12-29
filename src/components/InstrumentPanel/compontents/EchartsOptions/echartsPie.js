@@ -56,7 +56,6 @@ const getOption = function (optionData, config) {
 };
 const dealData = function (option) {
     let data = []
-    console.log(option);
     // console.log((option.hasOwnProperty('video') !== false));
     // eslint-disable-next-line no-prototype-builtins
     if (option.hasOwnProperty('video') !== false) {

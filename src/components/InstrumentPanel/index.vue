@@ -64,11 +64,10 @@ export default {
     this.upDataEchartsGlobalRank(this.userInfo)
     this.upDataEchartsWorkType(this.userInfo)
     let self = this
-    this.globalEmit.$on(signal.UPDATA,data=>{
+    this.globalEmit.$on(signal.UPDATE,data=>{
       let navNumInfo = data.navNumInfo
       let userInfo = data.userInfo
       let typeInfo = data.typeInfo
-      console.log(data,2);//TODO
       self.upDataEchartsPie(navNumInfo)
       self.upDataEchartsGlobalRank(userInfo)
       self.upDataEchartsWorkType(typeInfo)

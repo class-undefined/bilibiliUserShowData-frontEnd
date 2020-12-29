@@ -54,7 +54,6 @@ import EchartsCard from "@/components/FansLineAnalysis/compontents/EchartsCard";
 import EchartsLine from "@/components/FansLineAnalysis/compontents/EchartsLine";
 import getOption from "@/components/FansLineAnalysis/compontents/EchartsLine/EchartsOptions/echartsLine";
 import signal from "@/SignalConfig";
-import {status} from "@/api/config/status";
 
 export default {
   name: "FansLineAnalysis",
@@ -63,15 +62,6 @@ export default {
     userInfo: {
       type: Object,
       required: true
-    }
-  },
-  watch:{
-    /*监控prop中的userInfo是否发生改变，若发生改变则重新加载数据*/
-    userInfo(){
-      this.selectFansData(this.v_ref[0])
-      this.selectFansData(this.v_ref[1])
-      this.selectVideoData(this.v_ref[0])
-      this.selectVideoData(this.v_ref[1])
     }
   },
   data() {
@@ -124,21 +114,16 @@ export default {
     }
   },
   mounted() {
-    this.selectFansData(this.v_ref[0])
-    this.selectFansData(this.v_ref[1])
-    this.globalEmit.$on(signal.UPDATA,data=>{
+    this.globalEmit.$on(signal.UPDATE,data=>{
       // let navNumInfo = data.navNumInfo
       let userInfo = data.userInfo
-      console.log(data);
+      // console.log(data);
       // let typeInfo = data.typeInfo
       // console.log(data,2);//TODO
       // self.upDataEchartsPie(navNumInfo)
       this.userInfo = userInfo
       this.selectFansData(this.v_ref[0])
-      this.selectFansData(this.v_ref[1])
-      this.selectVideoData(this.v_ref[0])
       this.selectVideoData(this.v_ref[1])
-      // self.upDataEchartsWorkType(typeInfo)
     })
   },
   methods: {
@@ -154,7 +139,7 @@ export default {
     selectVideoData(compontent){
       let self = this
       let option = {}
-      let config = {text: "粉丝增量", color: "#0099FF"}
+      let config = {text: "点赞增量", color: "#0099FF"}
       config.text = this.model3 + this.model4
       option = getOption({"xData": self.videoInfo.xData, "yData": self.videoInfo.yData},
           config)

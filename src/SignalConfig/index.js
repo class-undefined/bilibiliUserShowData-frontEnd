@@ -1,4 +1,17 @@
+import fa from "element-ui/src/locale/lang/fa";
+
 const signal = {
-    UPDATA:"upDate",
+    UPDATE:"upDate",//更新数据
+    SEARCH:"searching",
+    SEARCHED:"searchDone"
+}
+const LOAD = {
+    SEARCHING:"正在搜索...",
+    LOADING:"正在加载...",
+    UPDATE:"正在获取数据",
+    SEARCHED:"搜索完毕",
+    STATE_SUC:false,//成功状态
+    STATE_DONGING:true//正在进行的状态
 }
 export default signal
+export {signal,LOAD}

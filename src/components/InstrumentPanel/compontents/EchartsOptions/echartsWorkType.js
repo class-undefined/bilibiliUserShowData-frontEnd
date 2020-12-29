@@ -68,7 +68,6 @@ const getOption = function (userInfo, config) {
 
 }
 const dealData = function (typeInfo) {
-    console.log(typeInfo);
     let data = typeInfo.tlist
     let sum = 0
     let xData = []

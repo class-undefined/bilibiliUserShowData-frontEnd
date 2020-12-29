@@ -32,7 +32,7 @@
 <script>
 import request from "@/api/request/request";
 import {query, queryNum} from "@/api/config/query";
-import signal from "@/SignalConfig";
+import {signal,LOAD} from "@/SignalConfig";
 import {status} from "@/api/config/status";
 
 export default {
@@ -54,8 +54,17 @@ export default {
   },
   methods: {
     onSubmit() {
+      if(this.form.mid===""){
+        return
+      }
+      let load = {
+        text:LOAD.SEARCHING,
+        state:true
+      }
+      this.globalEmit.$emit(signal.SEARCH,load)
       this.getAllInfo(this.form.mid)
     },
+    /*获取numInfo,若三个请求都成功 (此实现方式存在BUG, 仍需要使用axios.all方法解决此问题, 下同) 发送signal.SEARCH请求, 携带参数值false*/
     getNumInfo(mid) {
       let self = this
       request.post(query.numInfo, {mid})
@@ -74,15 +83,22 @@ export default {
             self.requestCount++
             if (self.requestCount === queryNum) {
               // self.$emit("updateInfo",{"navNumInfo":self.navNumInfo,"userInfo":self.userInfo,"typeInfo":self.typeInfo})
-              this.globalEmit.$emit(signal.UPDATA, {
+              this.globalEmit.$emit(signal.UPDATE, {
                 navNumInfo: self.navNumInfo,
                 userInfo: self.userInfo,
                 typeInfo: self.typeInfo
               })
               self.requestCount = 0
+              //成功获取信息后，发送搜索完成结果
+              let load = {
+                text:LOAD.SEARCHED,
+                state:LOAD.STATE_SUC
+              }
+              this.globalEmit.$emit(signal.SEARCH,load)
             }
           })
     },
+    /*获取userInfo, 发送signal.SEARCH请求, 携带参数值false*/
     getUserInfo(mid) {
       let self = this
       request.post(query.userInfo, {mid})
@@ -109,15 +125,22 @@ export default {
             if (self.requestCount === queryNum) {
               self.loading = false
               // self.$emit("updateInfo",{"navNumInfo":self.navNumInfo,"userInfo":self.userInfo})
-              this.globalEmit.$emit(signal.UPDATA, {
+              this.globalEmit.$emit(signal.UPDATE, {
                 navNumInfo: self.navNumInfo,
                 userInfo: self.userInfo,
                 typeInfo: self.typeInfo
               })
               self.requestCount = 0
+              //成功获取信息后，发送搜索完成结果
+              let load = {
+                text:LOAD.SEARCHED,
+                state:LOAD.STATE_SUC
+              }
+              this.globalEmit.$emit(signal.SEARCH,load)
             }
           })
     },
+    /*获取typeInfo, 发送signal.SEARCH请求, 携带参数值false*/
     getTypeInfo(mid) {
       let self = this
       request.post(query.typeInfo, {mid})
@@ -144,16 +167,23 @@ export default {
             self.requestCount++
             if (self.requestCount === queryNum) {
               // self.$emit("updateInfo",{"navNumInfo":self.navNumInfo,"userInfo":self.userInfo,"typeInfo":self.typeInfo})
-              this.globalEmit.$emit(signal.UPDATA, {
+              this.globalEmit.$emit(signal.UPDATE, {
                 navNumInfo: self.navNumInfo,
                 userInfo: self.userInfo,
                 typeInfo: self.typeInfo
               })
               self.requestCount = 0
+              //成功获取信息后，发送搜索完成结果
+              let load = {
+                text:LOAD.SEARCHED,
+                state:LOAD.STATE_SUC
+              }
+              this.globalEmit.$emit(signal.SEARCH,load)
             }
           })
 
     },
+    /*调用获取信息全部方法，获取所有信息*/
     getAllInfo(mid) {
       this.getNumInfo(mid)
       this.getUserInfo(mid)

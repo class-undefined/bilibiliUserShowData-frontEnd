@@ -5,7 +5,10 @@
         <header-div />
       </el-header>
       <el-main>
-        <home v-loading="loading" :userInfo="userInfo" :navNumInfo="navNumInfo"></home>
+        <home v-loading="loading"
+              :element-loading-text="loadingText"
+              :userInfo="userInfo"
+              :navNumInfo="navNumInfo"></home>
       </el-main>
     </el-container>
   </div>
@@ -30,14 +33,20 @@ export default {
       navNumInfo: require("@/assets/navNumInfo.json"),
       typeInfo:{},
       loading: true,
+      loadingText:"正在获取数据...",
       requestCount: 0,
     }
   },
   mounted() {
-    this.getNumInfo()
-    this.getUserInfo()
-    this.getTypeInfo()
-    this.globalEmit.$on(signal.UPDATA,this.upDataInfo)
+    // this.getNumInfo()
+    // this.getUserInfo()
+    // this.getTypeInfo()
+    this.globalEmit.$on(signal.UPDATE,this.upDataInfo)
+    /*接收来自HeaderDiv组件的axios请求的then的callback函数发送的SEARCH信号, 改变loading状态*/
+    this.globalEmit.$on(signal.SEARCH,load=>{
+      this.loadingText = load.text
+      this.loading = load.state
+    })
   },
   methods: {
     getNumInfo() {
@@ -47,7 +56,7 @@ export default {
             this.navNumInfo = res.data
             this.requestCount++
             if (this.requestCount === queryNum) {
-              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
+              this.globalEmit.$emit(signal.UPDATE,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
               this.loading = false
               this.requestCount = 0
             }
@@ -59,7 +68,7 @@ export default {
             this.userInfo = res.data
             this.requestCount++
             if (this.requestCount === queryNum) {
-              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
+              this.globalEmit.$emit(signal.UPDATE,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
               this.loading = false
               this.requestCount = 0
             }
@@ -71,7 +80,7 @@ export default {
             this.typeInfo = res.data.tlist
             this.requestCount++
             if (this.requestCount === queryNum) {
-              this.globalEmit.$emit(signal.UPDATA,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
+              this.globalEmit.$emit(signal.UPDATE,{navNumInfo:self.navNumInfo,userInfo:self.userInfo,typeInfo:self.typeInfo})
               this.loading = false
               this.requestCount = 0
             }
@@ -85,6 +94,7 @@ export default {
       this.userInfo = userInfo
       this.navNumInfo = numInfo
       this.typeInfo = typeInfo
+      this.loading = false
     }
   }
 }
