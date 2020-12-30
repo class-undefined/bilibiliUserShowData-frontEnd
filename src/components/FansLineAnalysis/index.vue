@@ -130,7 +130,7 @@ export default {
     selectFansData(compontent) {
       let self = this
       let option = {}
-      let config = {text: "粉丝增量", color: "#FF6666"}
+      let config = {text: "粉丝增量", color: "#ff6666"}
       config.text = this.model1 + this.model2
       option = getOption({"xData": self.fansDaysInfo.xData, "yData": self.fansDaysInfo.yData},
           config)
@@ -139,7 +139,7 @@ export default {
     selectVideoData(compontent){
       let self = this
       let option = {}
-      let config = {text: "点赞增量", color: "#0099FF"}
+      let config = {text: "点赞增量", color: "#0099ff"}
       config.text = this.model3 + this.model4
       option = getOption({"xData": self.videoInfo.xData, "yData": self.videoInfo.yData},
           config)

@@ -21,8 +21,8 @@
         </el-button>
       </el-form-item>
     </el-form>
-    <div style="flex: 2"></div>
-    <div style="flex: 1;">
+<!--    <div style="flex: 1"></div>-->
+    <div style="flex: 2;text-align: right">
       <span style="padding: 10px;">野漫横江 —— 人海浮沉几万里，此心安处是吾乡。</span>
     </div>
   </div>
@@ -71,7 +71,6 @@ export default {
       let self = this
       request.post(query.numInfo, {mid})
           .then(res => {
-            // console.log(res);
             if (res.status === status.NoFind.state) {
               this.$notify.error({
                 title: '啊哦！',

@@ -7,12 +7,12 @@
     </div>
     <div style="flex: 3">
       <div class="one-number-container">
-        <one-number class="number-item" :value="userInfo.baseinfo.follower" color="#FF9999" label="粉丝数"></one-number>
-        <one-number class="number-item" :value="userInfo.baseinfo.likes" color="#FFCC99" label="点赞数"></one-number>
-        <one-number class="number-item" :value="userInfo.baseinfo.archive_view" color="#99CCCC" label="播放量"></one-number>
-        <one-number class="number-item" :value="userInfo.baseinfo.total_charge_count" color="#FFFFCC" label="充电数"></one-number>
-        <one-number class="number-item" :value="userInfo.baseinfo.sumfavorite" color="#66CCCC" label="收藏数"></one-number>
-        <one-number class="number-item" :value="userInfo.baseinfo.sumreply" color="#66CCFF" label="评论数"></one-number>
+        <one-number class="number-item" :value="userInfo.baseinfo.follower" color="#FF9999" label="粉丝"></one-number>
+        <one-number class="number-item" :value="userInfo.baseinfo.likes" color="#FFCC99" label="点赞"></one-number>
+        <one-number class="number-item" :value="userInfo.baseinfo.archive_view" color="#99CCCC" label="播放"></one-number>
+        <one-number class="number-item" :value="userInfo.baseinfo.total_charge_count" color="#FFFFCC" label="充电"></one-number>
+        <one-number class="number-item" :value="userInfo.baseinfo.sumfavorite" color="#66CCCC" label="收藏"></one-number>
+        <one-number class="number-item" :value="userInfo.baseinfo.sumreply" color="#66CCFF" label="评论"></one-number>
       </div>
     </div>
   </div>
@@ -53,6 +53,6 @@ export default {
 .one-number-container{
   display: flex;
   justify-content: space-between;
-  padding: 5% 0;
+  padding: 5% 2% 5% 2%;
 }
 </style>
