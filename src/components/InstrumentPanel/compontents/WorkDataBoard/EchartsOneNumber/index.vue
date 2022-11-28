@@ -1,7 +1,7 @@
 <template>
   <el-col v-if="title!='days'" class="one-item">
-    <div class="p-name">{{title}}</div>
-    <div class="p-value">{{this.val}}</div>
+    <div class="p-name" :style="{color}">{{title}}</div>
+    <div class="p-value" :style="{color}">{{this.val}}</div>
   </el-col>
 </template>
 
@@ -18,6 +18,10 @@ export default {
       default:0,
       required:true,
     },
+    color:{
+      type:String,
+      required:false
+    }
   },
   data(){
     return{

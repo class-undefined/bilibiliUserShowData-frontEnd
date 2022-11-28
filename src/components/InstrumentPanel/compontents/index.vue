@@ -34,6 +34,7 @@ export default {
 
 <style scoped>
 .fans-global-rank-flex-container{
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   width: 340px;
@@ -50,7 +51,7 @@ export default {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 300;
   -webkit-box-pack: justify;
   justify-content: space-between;
 }

@@ -20,7 +20,7 @@ export default {
       default: "null"
     },
     rank:{
-      type:String,
+      type:Number,
       default:0
     }
   }

@@ -4,7 +4,11 @@
     <div style="flex: 1;line-height: normal;">
       <div style="display: flex;flex-direction: column;">
         <div style="flex: 1" class="flex-column">
-          <el-link style="font-size: 20px" :underline="false" type="danger" :href="baseInfo.url">{{baseInfo.name}}</el-link>
+          <el-link style="font-size: 20px"
+                   :underline="false"
+                   type="danger"
+                   target="_blank"
+                   :href="baseInfo.url">{{baseInfo.name}}</el-link>
         </div>
         <div style="flex: 1" class="flex-column">
           <p class="info-p">UP主属性：{{baseInfo.attribute}}</p>
